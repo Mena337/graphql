@@ -1,0 +1,56 @@
+body {
+    background-color: #000f1f;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #c5efef;
+    text-align: left;
+    font-size: small;
+}
+
+.first-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.second-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userinf, .progress, .transaction {
+    background-color: #001f3d;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #326595;
+    width: 21%;
+    height: 200px;
+    text-align: center;
+    margin: 40px;
+}
+
+.sv, .pie-svg {
+    background-color: #001f3d;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 
+        0 0 15px #326595;
+    width: 450px;
+    height: 330px;
+    text-align: center;
+    margin: 50px;
+}
+
+.progress, .transaction{
+    overflow-y: scroll;
+    scrollbar-width:none;
+}
+
+#svg-container path {
+    stroke: #ffffff;  /* Optional: To add space between arcs /
+    stroke-width: 2;  / Optional: Adjust the stroke space */
+}
