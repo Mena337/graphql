@@ -22,7 +22,7 @@ document.querySelector('button').addEventListener('click', async function() {
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
+            throw new Error('incorrect username or password ' + response.statusText);
         }
 
         console.log("jgdyjh")

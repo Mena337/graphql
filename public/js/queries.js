@@ -64,6 +64,8 @@ const GraphqlData = async (token, query) => {
 document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem('jwtToken'); 
     if (!token) {
+        alert("you have to login")
+        window.location.href = "login.html";
         throw new Error('JWT token not found in localStorage');
     }
     try {
@@ -115,4 +117,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error fetching user data:", error);
         alert("Failed to load user information.");
     }
+});
+
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+    localStorage.removeItem('jwtToken');
+    window.location.href = "login.html";
+    console.log("User logged out");
 });
