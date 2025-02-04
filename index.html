@@ -4,19 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/css/main.css">
-    <title>Document</title>
+    <title>GRAPHQL</title>
 </head>
 <body>
-    <div style="display: flex; justify-content: flex-end; width: 100%; margin-top: 5px; margin-right: 2px;">
+    <div style="display: flex;  width: 100%; margin-right: 2px; justify-content: space-between;">
+        <h1 style="text-align: center; font-size: 32px; margin-top:10px;">GRAPHQL</h1>                                          
         <h1 id="logoutButton" style="background-color: #000f1f; padding: 10px; display: flex; align-items: center;">
-            <img src="png/logout.png" alt="Logout" style="width: 20px; margin-right: 10px;">Logout
+            <img src="png/logout.png" alt="Logout" style="width: 20px; margin-right: 16px;">Logout
         </h1>
     </div>
-    
 
-    <h1 style="text-align: center; font-size: 50px; margin-top:10px;">GRAPHGL</h1>
-
-    
+    <div class="hh">
     <div class="first-row">
         <div class="userinf">
            
@@ -26,17 +24,16 @@
             <h1 id="userLogin"></h1><br>
             <h1 id="userEmail"></h1><br>
         </div>
-
-        <div class="progress">
-            <h1>User progress</h1> <hr>
-        </div>
-
-        <div class="transaction">
-            <h1>User transaction</h1> <hr>
-        </div>
+        
     </div>
 
     <div class="second-row">
+
+        
+        <ol id="event-users-list">
+            <h1>Top 6 Event Users</h1><hr><br>
+        </ol>
+
         <div class="pie-svg">
             <div id="labels-container" style="text-align: left;"></div>
             <svg id="svg-container" width="250" height="250"></svg>
@@ -48,8 +45,7 @@
         </div>
     </div>
 
- 
-
+</div>
 </body>
 
 

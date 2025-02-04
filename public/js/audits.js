@@ -13,7 +13,7 @@ const renderAudits = (user) => {
 
     var progressElement = document.querySelector(".sv");
     progressElement.innerHTML = `<h1>Audit Ratio: ${auditRatio}</h1>`;
-   
+
 
     var width = 300;
     var height = 220;
@@ -28,23 +28,22 @@ const renderAudits = (user) => {
         .enter()
         .append("rect")
         .attr({
-            x: function(d, i) { return i * (width / dataSet.length); },
-            y: function(d) { return height - (d / max) * 200; },
+            x: function (d, i) { return i * (width / dataSet.length); },
+            y: function (d) { return height - (d / max) * 200; },
             width: width / dataSet.length - padding,
-            height: function(d) { return ((d) / max) * 200; },
-            fill: function(d) { return "rgba(0, 255 , 255, " + ((d / 4) / (max / 4)); }
+            height: function (d) { return ((d) / max) * 200; },
+            fill: function (d) { return "rgba(0, 255 , 255, " + ((d / 4) / (max / 4)); }
         });
 
-    svg.selectAll("text")
-        .data(dataSet)
-        .enter()
-        .append("text")
-        .text(function(d) { return d; })
+        svg.append("text")
+        .text(`Received: ${dataSet[0]} \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 Done: ${dataSet[1]}`) 
         .attr({
             "text-anchor": "middle",
-            x: function(d, i) { return i * (width / dataSet.length) + (width / dataSet.length - padding) / 2; },
-            y: function(d) { return height - (((d) / max) * 200) + 14; },
-            "font-size": 15,
-            "fill": "#c5efef"
+            x: 130, 
+            y: height - 5,  
+            "font-size": 16,
+            "fill": "#000",
+            "font-weight": "bold"
         });
+
 };

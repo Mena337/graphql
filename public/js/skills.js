@@ -19,15 +19,22 @@ const renderSkills = (skills) => {
 
     var colors = ['#00cc88', '#cc8800', '#0088cc', '#cc0088', '#cc0199'];
 
-    idata.forEach(function(item, index) {
+    idata.forEach(function (item, index) {
         var percentage = item.value;
-        var α = (percentage / 100) * 360;  
+        var α = (percentage / 100) * 360;
         var π = Math.PI;
-        var r = (α * π / 180);  
-        var x = Math.sin(r) * 125;  
-        var y = Math.cos(r) * -125;  
+        var r = (α * π / 180);
+        var x = Math.sin(r) * 125;
+        var y = Math.cos(r) * -125;
         var mid = (α > 180) ? 1 : 0;
-        var anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z';
+        // var anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z';
+
+        var anim;
+        if (percentage === 100) {
+            anim = 'M -125 0 A 125 125 0 1 1 125 0 A 125 125 0 1 1 -125 0';
+        } else {
+            anim = 'M 0 0 v -125 A 125 125 1 ' + mid + ' 1 ' + x + ' ' + y + ' z';
+        }
 
         var loader = document.createElementNS("http://www.w3.org/2000/svg", "path");
         loader.setAttribute('d', anim);
@@ -36,11 +43,13 @@ const renderSkills = (skills) => {
         document.getElementById('svg-container').appendChild(loader);
     });
 
-    idata.forEach(function(item, index) {
+    idata.forEach(function (item, index) {
         var label = document.createElement("div");
-        label.style.color = colors[index % colors.length]; 
-        label.style.margin = "5px"; 
+        label.style.color = colors[index % colors.length];
+        label.style.margin = "5px";
         label.textContent = `${item.name}: ${item.value}%`;
         document.getElementById('labels-container').appendChild(label);
     });
 };
+
+

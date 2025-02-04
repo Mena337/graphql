@@ -27,13 +27,13 @@ document.querySelector('button').addEventListener('click', async function() {
 
         console.log("jgdyjh")
 
-        const token = await response.json(); // Get the response as a text (JWT token)
+        const token = await response.json(); 
         console.log("JWT Token:", token);
         localStorage.setItem('jwtToken', token);
         window.location.href = "index.html";
 
     } catch (error) {
         console.error("Error:", error.message);
-        alert(error.message); // Display error message to the user
+        alert(error.message); 
     }
 });

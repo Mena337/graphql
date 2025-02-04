@@ -11,6 +11,8 @@ const query_skills = `{
   }
 }`;
 
+
+
 const query1 = `{
     user {
       id
@@ -35,6 +37,13 @@ const query1 = `{
       amount
       userId
     }
+      event_user(where: { eventId: { _in: [72, 20, 250] } }  order_by: { level: desc } ) {
+      level
+      userId
+      userLogin
+      eventId
+    }
+
       }`;
 
 const GraphqlData = async (token, query) => {
@@ -62,7 +71,7 @@ const GraphqlData = async (token, query) => {
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const token = localStorage.getItem('jwtToken'); 
+    const token = localStorage.getItem('jwtToken');
     if (!token) {
         alert("you have to login")
         window.location.href = "login.html";
@@ -76,40 +85,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("userName").textContent = `Name: ${user.firstName} ${user.lastName}`;
         document.getElementById("userLogin").textContent = `Login: ${user.login}`;
         document.getElementById("userEmail").textContent = `Email: ${user.email}`;
-        
-        // Progress Rendering
-        const pro = data.data.progress;
-        const progressContainer = document.querySelector('.progress');
-        pro.forEach(progress => {
-            const progressElement = document.createElement('div');
-            progressElement.innerHTML = `
-                <h1>Path: ${progress.path}</h1>
-                <h1>Created At: ${progress.createdAt}</h1>
-                <h1>Updated At: ${progress.updatedAt}</h1>
-                <h1>Grade: ${progress.grade}</h1>
-                <hr>
-            `;
-            progressContainer.appendChild(progressElement);
-        });
 
-        // Transactions Rendering
-        const tra = data.data.transaction;
-        const TprogressContainer = document.querySelector('.transaction');
-        tra.forEach(transaction => {
-            const progressElement = document.createElement('div');
-            progressElement.innerHTML = `
-                <h1>Object ID: ${transaction.objectId}</h1>
-                <h1>Created At: ${transaction.createdAt}</h1>
-                <h1>Type: ${transaction.type}</h1>
-                <h1>User ID: ${transaction.userId}</h1>
-                <hr>
-            `;
-            TprogressContainer.appendChild(progressElement);
+        //Top 6 Event Users
+        const eventUsers = data.data.event_user;
+        const top3EventUsers = eventUsers.slice(0,6);
+
+        const list = document.getElementById('event-users-list');
+        top3EventUsers.forEach(user => {
+            
+            const listItem = document.createElement('li');
+            listItem.className = 'event-user-item';
+            listItem.textContent = `User: ${user.userLogin}, Level: ${user.level}`;
+            list.appendChild(listItem);
         });
 
         // Skills and Audits Logic
         const skillsData = await GraphqlData(token, query_skills);
-        const auditRatio = user.auditRatio.toFixed(1);
         renderSkills(skillsData.data.transaction);
         renderAudits(user);
 
@@ -120,8 +111,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-document.getElementById('logoutButton').addEventListener('click', function() {
+
+document.getElementById('logoutButton').addEventListener('click', function () {
     localStorage.removeItem('jwtToken');
     window.location.href = "login.html";
     console.log("User logged out");
 });
+
+
+
